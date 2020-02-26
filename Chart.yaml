@@ -1,0 +1,6 @@
+---
+apiVersion: v1
+appVersion: "0.2.0"
+description: Example without vpp
+name: example
+version: 0.2.0
