@@ -22,7 +22,7 @@ spec:
                         - key: kubernetes.io/hostname
                           operator: In
                           values:
-                            - cube2
+                            - cube4
       containers:
         - name: sidecar-nse
           image: {{ .Values.registry }}/{{ .Values.org }}/proxy-sidecar-nse:{{ .Values.tag }}
