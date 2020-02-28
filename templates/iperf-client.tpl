@@ -22,7 +22,7 @@ spec:
                         - key: kubernetes.io/hostname
                           operator: In
                           values:
-                            - cube2
+                            - cube4
       containers:
       - name: iperf3-client
         image: networkstatic/iperf3
