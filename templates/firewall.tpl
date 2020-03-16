@@ -44,7 +44,7 @@ spec:
             limits:
               networkservicemesh.io/socket: 1
         - name: firewall-container
-          image: raffaeletrani/firewall_container:k8s
+          image: raffaeletrani/firewall_container:firewall
           securityContext:
             capabilities:
               add: ["NET_ADMIN"]
