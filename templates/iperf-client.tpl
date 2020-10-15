@@ -13,6 +13,9 @@ spec:
         networkservicemesh.io/app: "iperf-client"
         networkservicemesh.io/impl: "example"
     spec:
+#      hostPID: true
+#      hostNetwork: true
+#      dnsPolicy: ClusterFirstWithHostNet
       serviceAccount: nsc-acc
       affinity:
           nodeAffinity:
@@ -22,7 +25,7 @@ spec:
                         - key: kubernetes.io/hostname
                           operator: In
                           values:
-                            - cube4
+                            - cube2
       containers:
       - name: iperf3-client
         image: networkstatic/iperf3

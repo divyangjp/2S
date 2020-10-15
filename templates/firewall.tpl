@@ -22,7 +22,7 @@ spec:
                         - key: kubernetes.io/hostname
                           operator: In
                           values:
-                            - cube4
+                            - cube2
       containers:
         - name: sidecar-nse
           image: raffaeletrani/sidecar-nse

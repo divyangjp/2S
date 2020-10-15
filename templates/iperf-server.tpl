@@ -22,7 +22,7 @@ spec:
                         - key: kubernetes.io/hostname
                           operator: In
                           values:
-                            - cube4
+                            - cube2
       containers:
         - name: sidecar-nse
           image: {{ .Values.registry }}/{{ .Values.org }}/proxy-sidecar-nse:{{ .Values.tag }}
@@ -44,7 +44,7 @@ spec:
               add: ["NET_ADMIN"]
           args: ['-s']
           ports:
-          - containerPort: 5001
+          - containerPort: 5201
             name: server
             protocol: TCP
       terminationGracePeriodSeconds: 0
