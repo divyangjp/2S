@@ -16,16 +16,7 @@ spec:
 #      hostPID: true
 #      hostNetwork: true
 #      dnsPolicy: ClusterFirstWithHostNet
-      serviceAccount: nsc-acc
-      affinity:
-          nodeAffinity:
-              requiredDuringSchedulingIgnoredDuringExecution:
-                  nodeSelectorTerms:
-                      - matchExpressions:
-                        - key: kubernetes.io/hostname
-                          operator: In
-                          values:
-                            - cube2
+      serviceAccount: skydive-service-account
       containers:
       - name: iperf3-client
         image: networkstatic/iperf3
@@ -36,6 +27,5 @@ spec:
       terminationGracePeriodSeconds: 0
 metadata:
   name: iperf-client
-  namespace: default
   annotations:
     ns.networkservicemesh.io: example

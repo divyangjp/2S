@@ -13,16 +13,7 @@ spec:
         networkservicemesh.io/app: "firewall"
         networkservicemesh.io/impl: "example"
     spec:
-      serviceAccount: nse-acc
-      affinity:
-          nodeAffinity:
-              requiredDuringSchedulingIgnoredDuringExecution:
-                  nodeSelectorTerms:
-                      - matchExpressions:
-                        - key: kubernetes.io/hostname
-                          operator: In
-                          values:
-                            - cube2
+      serviceAccount: skydive-service-account
       containers:
         - name: sidecar-nse
           image: raffaeletrani/sidecar-nse
@@ -51,4 +42,3 @@ spec:
           command: ['/bin/sh', '-c', 'sleep infinity']
 metadata:
   name: firewall
-  namespace: default

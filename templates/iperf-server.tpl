@@ -13,16 +13,7 @@ spec:
         networkservicemesh.io/app: "iperf-server"
         networkservicemesh.io/impl: "example"
     spec:
-      serviceAccount: nse-acc
-      affinity:
-          nodeAffinity:
-              requiredDuringSchedulingIgnoredDuringExecution:
-                  nodeSelectorTerms:
-                      - matchExpressions:
-                        - key: kubernetes.io/hostname
-                          operator: In
-                          values:
-                            - cube2
+      serviceAccount: skydive-service-account
       containers:
         - name: sidecar-nse
           image: {{ .Values.registry }}/{{ .Values.org }}/proxy-sidecar-nse:{{ .Values.tag }}
@@ -50,4 +41,3 @@ spec:
       terminationGracePeriodSeconds: 0
 metadata:
   name: iperf-server
-  namespace: default
