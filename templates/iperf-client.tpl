@@ -28,4 +28,4 @@ spec:
 metadata:
   name: iperf-client
   annotations:
-    ns.networkservicemesh.io: example
+    ns.networkservicemesh.io: example/nsm11

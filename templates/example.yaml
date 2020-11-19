@@ -14,7 +14,21 @@ spec:
           destinationSelector:
             app: iperf-server
     - match:
+      sourceSelector:
+        app: router1
       route:
         - destination:
           destinationSelector:
             app: firewall
+    #- match:
+    #  sourceSelector:
+    #    link: r1-r2 
+    #  route:
+    #    - destination:
+    #      destinationSelector:
+    #        app: router2
+    - match:
+      route:
+        - destination:
+          destinationSelector:
+            app: router1
