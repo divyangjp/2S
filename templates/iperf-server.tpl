@@ -5,13 +5,13 @@ spec:
   selector:
     matchLabels:
       networkservicemesh.io/app: "iperf-server"
-      networkservicemesh.io/impl: "example"
+      networkservicemesh.io/impl: "rfchain"
   replicas: 1
   template:
     metadata:
       labels:
         networkservicemesh.io/app: "iperf-server"
-        networkservicemesh.io/impl: "example"
+        networkservicemesh.io/impl: "rfchain"
     spec:
       serviceAccount: skydive-service-account
       containers:
@@ -20,7 +20,7 @@ spec:
           imagePullPolicy: IfNotPresent
           env:
             - name: ENDPOINT_NETWORK_SERVICE
-              value: "example"
+              value: "rfchain"
             - name: ENDPOINT_LABELS
               value: "app=iperf-server"
             - name: IP_ADDRESS

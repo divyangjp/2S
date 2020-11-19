@@ -5,13 +5,13 @@ spec:
   selector:
     matchLabels:
       networkservicemesh.io/app: "firewall"
-      networkservicemesh.io/impl: "example"
+      networkservicemesh.io/impl: "rfchain"
   replicas: 1
   template:
     metadata:
       labels:
         networkservicemesh.io/app: "firewall"
-        networkservicemesh.io/impl: "example"
+        networkservicemesh.io/impl: "rfchain"
     spec:
       serviceAccount: skydive-service-account
       containers:
@@ -20,7 +20,7 @@ spec:
           imagePullPolicy: IfNotPresent
           env:
             - name: ENDPOINT_NETWORK_SERVICE
-              value: "example"
+              value: "rfchain"
             - name: ENDPOINT_LABELS
               value: "app=firewall"
             - name: IP_ADDRESS
@@ -28,7 +28,7 @@ spec:
             - name: NSM_NAMESPACE
               value: "nsm-system"
             - name: CLIENT_NETWORK_SERVICE
-              value: "example"
+              value: "rfchain"
             - name: CLIENT_LABELS
               value: "app=firewall"
           resources:

@@ -6,12 +6,12 @@ spec:
   selector:
     matchLabels:
       networkservicemesh.io/app: "router2"
-      networkservicemesh.io/impl: "example"
+      networkservicemesh.io/impl: "rfchain"
   template:
     metadata:
       labels:
         networkservicemesh.io/app: "router2"
-        networkservicemesh.io/impl: "example"
+        networkservicemesh.io/impl: "rfchain"
     spec:
       containers:
         - name: sidecar-nse
@@ -19,7 +19,7 @@ spec:
           imagePullPolicy: IfNotPresent
           env:
             - name: ENDPOINT_NETWORK_SERVICE
-              value: "example"
+              value: "rfchain"
             - name: ENDPOINT_LABELS
               value: "app=router2"
             - name: TRACER_ENABLED

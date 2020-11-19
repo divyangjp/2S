@@ -5,13 +5,13 @@ spec:
   selector:
     matchLabels:
       networkservicemesh.io/app: "iperf-client"
-      networkservicemesh.io/impl: "example"
+      networkservicemesh.io/impl: "rfchain"
   replicas: 1
   template:
     metadata:
       labels:
         networkservicemesh.io/app: "iperf-client"
-        networkservicemesh.io/impl: "example"
+        networkservicemesh.io/impl: "rfchain"
     spec:
 #      hostPID: true
 #      hostNetwork: true
@@ -28,4 +28,4 @@ spec:
 metadata:
   name: iperf-client
   annotations:
-    ns.networkservicemesh.io: example/nsm11
+    ns.networkservicemesh.io: rfchain

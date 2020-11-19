@@ -5,13 +5,13 @@ spec:
   selector:
     matchLabels:
       networkservicemesh.io/app: "router1"
-      networkservicemesh.io/impl: "example"
+      networkservicemesh.io/impl: "rfchain"
   replicas: 1
   template:
     metadata:
       labels:
         networkservicemesh.io/app: "router1"
-        networkservicemesh.io/impl: "example"
+        networkservicemesh.io/impl: "rfchain"
     spec:
       containers:
         - name: sidecar-nsc
@@ -22,13 +22,13 @@ spec:
               networkservicemesh.io/socket: "1"
           env:
             - name: NS_NETWORKSERVICEMESH_IO
-              value: "example/nsintR12?link=r1-r2&peerif=nsintR21"
+              value: "rfchain/nsintR12?link=r1-r2&peerif=nsintR21"
         - name: sidecar-nse
           image: networkservicemesh/topology-sidecar-nse:master
           imagePullPolicy: IfNotPresent
           env:
             - name: ENDPOINT_NETWORK_SERVICE
-              value: "example"
+              value: "rfchain"
             - name: ENDPOINT_LABELS
               value: "app=router1"
             - name: TRACER_ENABLED
