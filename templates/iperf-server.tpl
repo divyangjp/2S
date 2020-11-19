@@ -25,12 +25,12 @@ spec:
       #                      - cube2
       containers:
         - name: sidecar-nse
-          image: networkservicemesh/proxy-sidecar-nse:latest
+          image: networkservicemesh/proxy-sidecar-nse:master
           imagePullPolicy: IfNotPresent
           env:
-            - name: ADVERTISE_NSE_NAME
+            - name: ENDPOINT_NETWORK_SERVICE
               value: "servicechain"
-            - name: ADVERTISE_NSE_LABELS
+            - name: ENDPOINT_LABELS
               value: "app=iperf-server"
             - name: IP_ADDRESS
               value: "172.16.2.0/24"

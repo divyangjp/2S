@@ -25,12 +25,12 @@ spec:
       #                      - cube2
       containers:
         - name: sidecar-nse
-          image: networkservicemesh/proxy-sidecar-nse
+          image: raffaeletrani/sidecar-nse
           imagePullPolicy: IfNotPresent
           env:
-            - name: ADVERTISE_NSE_NAME
+            - name: ENDPOINT_NETWORK_SERVICE
               value: "servicechain"
-            - name: ADVERTISE_NSE_LABELS
+            - name:  ENDPOINT_LABELS
               value: "app=firewall"
             - name: IP_ADDRESS
               value: "172.16.1.0/24"
