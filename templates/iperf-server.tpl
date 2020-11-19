@@ -5,32 +5,32 @@ spec:
   selector:
     matchLabels:
       networkservicemesh.io/app: "iperf-server"
-      networkservicemesh.io/impl: "example"
+      networkservicemesh.io/impl: "servicechain"
   replicas: 1
   template:
     metadata:
       labels:
         networkservicemesh.io/app: "iperf-server"
-        networkservicemesh.io/impl: "example"
+        networkservicemesh.io/impl: "servicechain"
     spec:
-      serviceAccount: nse-acc
-      affinity:
-          nodeAffinity:
-              requiredDuringSchedulingIgnoredDuringExecution:
-                  nodeSelectorTerms:
-                      - matchExpressions:
-                        - key: kubernetes.io/hostname
-                          operator: In
-                          values:
-                            - cube2
+      serviceAccount: skydive-service-account
+      #affinity:
+      #    nodeAffinity:
+      #        requiredDuringSchedulingIgnoredDuringExecution:
+      #            nodeSelectorTerms:
+      #                - matchExpressions:
+      #                  - key: kubernetes.io/hostname
+      #                    operator: In
+      #                    values:
+      #                      - cube2
       containers:
         - name: sidecar-nse
-          image: {{ .Values.registry }}/{{ .Values.org }}/proxy-sidecar-nse:{{ .Values.tag }}
+          image: networkservicemesh/proxy-sidecar-nse:latest
           imagePullPolicy: IfNotPresent
           env:
-            - name: ENDPOINT_NETWORK_SERVICE
-              value: "example"
-            - name: ENDPOINT_LABELS
+            - name: ADVERTISE_NSE_NAME
+              value: "servicechain"
+            - name: ADVERTISE_NSE_LABELS
               value: "app=iperf-server"
             - name: IP_ADDRESS
               value: "172.16.2.0/24"

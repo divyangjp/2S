@@ -5,39 +5,39 @@ spec:
   selector:
     matchLabels:
       networkservicemesh.io/app: "firewall"
-      networkservicemesh.io/impl: "example"
+      networkservicemesh.io/impl: "servicechain"
   replicas: 1
   template:
     metadata:
       labels:
         networkservicemesh.io/app: "firewall"
-        networkservicemesh.io/impl: "example"
+        networkservicemesh.io/impl: "servicechain"
     spec:
-      serviceAccount: nse-acc
-      affinity:
-          nodeAffinity:
-              requiredDuringSchedulingIgnoredDuringExecution:
-                  nodeSelectorTerms:
-                      - matchExpressions:
-                        - key: kubernetes.io/hostname
-                          operator: In
-                          values:
-                            - cube2
+      serviceAccount: skydive-service-account
+      #affinity:
+      #    nodeAffinity:
+      #        requiredDuringSchedulingIgnoredDuringExecution:
+      #            nodeSelectorTerms:
+      #                - matchExpressions:
+      #                  - key: kubernetes.io/hostname
+      #                    operator: In
+      #                    values:
+      #                      - cube2
       containers:
         - name: sidecar-nse
-          image: raffaeletrani/sidecar-nse
+          image: networkservicemesh/proxy-sidecar-nse
           imagePullPolicy: IfNotPresent
           env:
-            - name: ENDPOINT_NETWORK_SERVICE
-              value: "example"
-            - name: ENDPOINT_LABELS
+            - name: ADVERTISE_NSE_NAME
+              value: "servicechain"
+            - name: ADVERTISE_NSE_LABELS
               value: "app=firewall"
             - name: IP_ADDRESS
               value: "172.16.1.0/24"
             - name: NSM_NAMESPACE
               value: "nsm-system"
             - name: CLIENT_NETWORK_SERVICE
-              value: "example"
+              value: "servicechain"
             - name: CLIENT_LABELS
               value: "app=firewall"
           resources:
