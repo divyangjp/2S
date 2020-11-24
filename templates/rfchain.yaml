@@ -2,7 +2,7 @@
 apiVersion: networkservicemesh.io/v1alpha1
 kind: NetworkService
 metadata:
-  name: example
+  name: rfchain
 spec:
   payload: IP
   matches:
@@ -20,13 +20,6 @@ spec:
         - destination:
           destinationSelector:
             app: firewall
-    #- match:
-    #  sourceSelector:
-    #    link: r1-r2 
-    #  route:
-    #    - destination:
-    #      destinationSelector:
-    #        app: router2
     - match:
       route:
         - destination:

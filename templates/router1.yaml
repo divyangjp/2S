@@ -14,15 +14,15 @@ spec:
         networkservicemesh.io/impl: "rfchain"
     spec:
       containers:
-        - name: sidecar-nsc
-          image: networkservicemesh/topology-sidecar-nsc:master
-          imagePullPolicy: IfNotPresent
-          resources:
-            limits:
-              networkservicemesh.io/socket: "1"
-          env:
-            - name: NS_NETWORKSERVICEMESH_IO
-              value: "rfchain/nsintR12?link=r1-r2&peerif=nsintR21"
+        #- name: sidecar-nsc
+        #  image: networkservicemesh/topology-sidecar-nsc:master
+        #  imagePullPolicy: IfNotPresent
+        #  resources:
+        #    limits:
+        #      networkservicemesh.io/socket: "1"
+        #  env:
+        #    - name: NS_NETWORKSERVICEMESH_IO
+        #      value: "rfchain?app=router1"
         - name: sidecar-nse
           image: networkservicemesh/topology-sidecar-nse:master
           imagePullPolicy: IfNotPresent
@@ -48,10 +48,16 @@ spec:
             - name: startup-config
               mountPath: /etc/quagga/zebra.conf
               subPath: zebra.conf
+            - name: ospf-config
+              mountPath: /etc/quagga/ospf.conf
+              subPath: ospf.conf
       volumes:
         - name: startup-config
           configMap:
             name: qrtr-1
+        - name: ospf-config
+          configMap:
+            name: qrtr-1-ospf-config
 metadata:
   name: "router1"
   namespace: default
@@ -66,6 +72,20 @@ data:
     !
     interface lo
       ip address 192.0.2.1/32
-      exit
+    !
+    ip forwarding
+    exit
+kind: ConfigMap
+---
+apiVersion: v1
+metadata:
+  name: qrtr-1-ospf-config
+data:
+  ospf.conf: |
+    !
+    router ospf
+     network 0.0.0.0/0 area 0.0.0.0
+     passive-interface eth0
+     log stdout debugging
     !
 kind: ConfigMap
