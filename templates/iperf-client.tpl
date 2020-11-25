@@ -28,4 +28,4 @@ spec:
 metadata:
   name: iperf-client
   annotations:
-    ns.networkservicemesh.io: rfchain
+    ns.networkservicemesh.io: rfchain/c1r1?link=c1r

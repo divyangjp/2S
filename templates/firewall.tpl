@@ -16,7 +16,23 @@ spec:
       serviceAccount: skydive-service-account
       containers:
         - name: sidecar-nse
-          image: raffaeletrani/sidecar-nse
+          image: networkservicemesh/proxy-sidecar-nse:master
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: ENDPOINT_NETWORK_SERVICE
+              value: "rfchain"
+            - name: ENDPOINT_LABELS
+              value: "app=iperf-server"
+            - name: IP_ADDRESS
+              value: "10.2.1.0/24"
+            - name: ROUTES
+              value: "10.60.1.0/24"
+          resources:
+            limits:
+              networkservicemesh.io/socket: 1
+        - name: ep-to-router
+          #image: raffaeletrani/sidecar-nse
+          image: networkservicemesh/proxy-sidecar-nse:master
           imagePullPolicy: IfNotPresent
           env:
             - name: ENDPOINT_NETWORK_SERVICE
@@ -24,13 +40,7 @@ spec:
             - name: ENDPOINT_LABELS
               value: "app=firewall"
             - name: IP_ADDRESS
-              value: "172.16.1.0/24"
-            - name: NSM_NAMESPACE
-              value: "nsm-system"
-            - name: CLIENT_NETWORK_SERVICE
-              value: "rfchain"
-            - name: CLIENT_LABELS
-              value: "app=firewall"
+              value: "172.16.2.0/24"
           resources:
             limits:
               networkservicemesh.io/socket: 1

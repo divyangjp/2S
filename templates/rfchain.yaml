@@ -8,19 +8,21 @@ spec:
   matches:
     - match:
       sourceSelector:
-        app: firewall
+        link: sgi
       route:
         - destination:
           destinationSelector:
             app: iperf-server
     - match:
       sourceSelector:
-        app: router1
+        link: r1f
       route:
         - destination:
           destinationSelector:
             app: firewall
     - match:
+      sourceSelector:
+        link: c1r
       route:
         - destination:
           destinationSelector:

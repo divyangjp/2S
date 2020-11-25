@@ -15,19 +15,6 @@ spec:
     spec:
       serviceAccount: skydive-service-account
       containers:
-        - name: sidecar-nse
-          image: {{ .Values.registry }}/{{ .Values.org }}/proxy-sidecar-nse:{{ .Values.tag }}
-          imagePullPolicy: IfNotPresent
-          env:
-            - name: ENDPOINT_NETWORK_SERVICE
-              value: "rfchain"
-            - name: ENDPOINT_LABELS
-              value: "app=iperf-server"
-            - name: IP_ADDRESS
-              value: "172.16.2.0/24"
-          resources:
-            limits:
-              networkservicemesh.io/socket: 1
         - name: iperf3-server
           image: networkstatic/iperf3
           securityContext:
@@ -41,3 +28,5 @@ spec:
       terminationGracePeriodSeconds: 0
 metadata:
   name: iperf-server
+  annotations:
+    ns.networkservicemesh.io: rfchain/sgi0?link=sgi
