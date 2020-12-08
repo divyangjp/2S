@@ -26,8 +26,6 @@ spec:
               value: "true"
             - name: IP_ADDRESS
               value: "10.60.1.0/24"
-            - name: ROUTES
-              value: "10.2.1.0/24"
           resources:
             limits:
               networkservicemesh.io/socket: 1
