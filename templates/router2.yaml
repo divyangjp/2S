@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: sidecar-nsc
-          image: networkservicemesh/topology-sidecar-nsc:latest
+          image: networkservicemesh/topology-sidecar-nsc:master
           imagePullPolicy: IfNotPresent
           resources:
             limits:
@@ -24,7 +24,7 @@ spec:
             - name: NS_NETWORKSERVICEMESH_IO
               value: "rfchain/rfeth23?link=r2-r3&peerif=rfeth32"
         - name: sidecar-nse
-          image: networkservicemesh/topology-sidecar-nse:latest
+          image: networkservicemesh/topology-sidecar-nse:master
           imagePullPolicy: IfNotPresent
           env:
             - name: ENDPOINT_NETWORK_SERVICE
@@ -39,7 +39,7 @@ spec:
             limits:
               networkservicemesh.io/socket: 1
         - name: router
-          image: networkservicemesh/topology-qrtr:latest
+          image: networkservicemesh/topology-qrtr:master
           imagePullPolicy: IfNotPresent
           securityContext:
             capabilities:

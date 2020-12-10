@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: sidecar-nsc
-          image: networkservicemesh/topology-sidecar-nsc:latest
+          image: networkservicemesh/topology-sidecar-nsc:master
           imagePullPolicy: IfNotPresent
           resources:
             limits:

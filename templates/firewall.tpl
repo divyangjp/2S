@@ -64,20 +64,20 @@ spec:
       volumes:
         - name: startup-config
           configMap:
-            name: qrtr-2
+            name: qrtr-fw
         - name: ospf-config
           configMap:
-            name: qrtr-2-ospf-config
+            name: qrtr-fw-ospf-config
 metadata:
   name: firewall
 ---
 apiVersion: v1
 metadata:
-  name: qrtr-2
+  name: qrtr-fw
 data:
   zebra.conf: |
     !
-    hostname qrtr-2
+    hostname qrtr-fw
     !
     interface lo
       ip address 192.0.3.1/32
@@ -88,7 +88,7 @@ kind: ConfigMap
 ---
 apiVersion: v1
 metadata:
-  name: qrtr-2-ospf-config
+  name: qrtr-fw-ospf-config
 data:
   ospf.conf: |
     !
