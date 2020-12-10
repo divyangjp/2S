@@ -54,6 +54,8 @@ spec:
             name: qrtr-4
 metadata:
   name: router4
+  annotations:
+    ns.networkservicemesh.io: rfchain/r4f?link=r4f
   namespace: default
 ---
 apiVersion: v1

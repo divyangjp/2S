@@ -60,8 +60,6 @@ spec:
             name: qrtr-1-ospf-config
 metadata:
   name: "router1"
-  annotations:
-    ns.networkservicemesh.io: rfchain/r1f1?link=r1f
   namespace: default
 ---
 apiVersion: v1
