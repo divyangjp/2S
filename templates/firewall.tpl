@@ -24,7 +24,7 @@ spec:
             - name: ENDPOINT_LABELS
               value: "app=iperf-server"
             - name: IP_ADDRESS
-              value: "10.60.2.0/24"
+              value: "10.60.6.0/24"
           resources:
             limits:
               networkservicemesh.io/socket: 1
@@ -38,7 +38,7 @@ spec:
             - name: ENDPOINT_LABELS
               value: "app=firewall"
             - name: IP_ADDRESS
-              value: "10.60.3.0/24"
+              value: "10.60.7.0/24"
           resources:
             limits:
               networkservicemesh.io/socket: 1

@@ -4,13 +4,13 @@ kind: Deployment
 spec:
   selector:
     matchLabels:
-      networkservicemesh.io/app: "router1"
+      networkservicemesh.io/app: "router3"
       networkservicemesh.io/impl: "rfchain"
   replicas: 1
   template:
     metadata:
       labels:
-        networkservicemesh.io/app: "router1"
+        networkservicemesh.io/app: "router3"
         networkservicemesh.io/impl: "rfchain"
     spec:
       containers:
@@ -22,24 +22,24 @@ spec:
               networkservicemesh.io/socket: "1"
           env:
             - name: NS_NETWORKSERVICEMESH_IO
-              value: "rfchain/rfeth12?link=r1-r2&peerif=rfeth21"
+              value: "rfchain/rfeth34?link=r3-r4&peerif=rfeth43"
         - name: sidecar-nse
-          image: networkservicemesh/proxy-sidecar-nse:master
+          image: networkservicemesh/topology-sidecar-nse:latest
           imagePullPolicy: IfNotPresent
           env:
             - name: ENDPOINT_NETWORK_SERVICE
               value: "rfchain"
             - name: ENDPOINT_LABELS
-              value: "app=router1"
+              value: "app=router3"
             - name: TRACER_ENABLED
               value: "true"
             - name: IP_ADDRESS
-              value: "10.60.1.0/24"
+              value: "10.60.3.0/24"
           resources:
             limits:
               networkservicemesh.io/socket: 1
         - name: router
-          image: networkservicemesh/topology-qrtr:master
+          image: networkservicemesh/topology-qrtr:latest
           imagePullPolicy: IfNotPresent
           securityContext:
             capabilities:
@@ -48,46 +48,24 @@ spec:
             - name: startup-config
               mountPath: /etc/quagga/zebra.conf
               subPath: zebra.conf
-            - name: ospf-config
-              mountPath: /etc/quagga/ospf.conf
-              subPath: ospf.conf
       volumes:
         - name: startup-config
           configMap:
-            name: qrtr-1
-        - name: ospf-config
-          configMap:
-            name: qrtr-1-ospf-config
+            name: qrtr-3
 metadata:
-  name: "router1"
-  annotations:
-    ns.networkservicemesh.io: rfchain/r1f1?link=r1f
+  name: "router3"
   namespace: default
 ---
 apiVersion: v1
 metadata:
-  name: qrtr-1
+  name: qrtr-3
 data:
   zebra.conf: |
     !
-    hostname qrtr-1
+    hostname qrtr-3
     !
     interface lo
-      ip address 192.0.2.1/32
-    !
-    ip forwarding
-    exit
-kind: ConfigMap
----
-apiVersion: v1
-metadata:
-  name: qrtr-1-ospf-config
-data:
-  ospf.conf: |
-    !
-    router ospf
-     network 0.0.0.0/0 area 0.0.0.0
-     passive-interface eth0
-     log stdout debugging
+      ip address 192.0.2.3/32
+      exit
     !
 kind: ConfigMap

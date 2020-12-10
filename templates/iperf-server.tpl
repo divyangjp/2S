@@ -30,4 +30,4 @@ spec:
 metadata:
   name: iperf-server
   annotations:
-   ns.networkservicemesh.io: rfchain/sgi0?link=sgi
+   ns.networkservicemesh.io: rfchain/iserv0?link=iserv0
